@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>ELTeC</title>
+
+<link rel="stylesheet" href="dist/reset.css">
+<link rel="stylesheet" href="dist/reveal.css">
+<link rel="stylesheet" href="dist/theme/simple.css" id="theme">
+<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section 
+    data-markdown="" 
+    data-separator="^\n--\n" 
+    data-separator-vertical="^\n---\n" 
+    data-charset="utf-8" 
+    data-background-image="img/basics/tcdh-square.png" 
+    data-background-size="100px" 
+    data-background-position="right 10px top 10px">
+
+<textarea data-template>
+
+# Text und Data Mining und Urheberrecht: 
+# Aktuelles zum Thema 'abgeleitete Textformate'
+<hr/>
+<br/><br/><br/>
+
+Christof Schöch (Universität Trier)
+
+SPP-CLS General Meeting, 22. September 2021
+
+Präsentation: https://dh-trier.github.io/atf
+<br/><br/>
+<hr/>
+<img data-src="img/basics/uni-trier.png" height="40">&nbsp;&nbsp;&nbsp;</img><img data-src="img/basics/tcdh.png" height="40"></img>
+
+
+
+--
+### Überblick 
+1. Rekonstruktion von Text aus CET (InvBERT) 
+1. Evaluation von Textformaten bei Topic Modeling
+1. Abgeleitete Textformate im NFDI-Konsortium Text+
+
+
+--
+## Rekonstruktion von Text aus CET (InvBERT) 
+
+---
+### Kontext 
+* Masterarbeit von Johannes Hoehmann im Fach Computerlinguistik (Trier; Betreuung: Achim Rettinger)
+* Hintergrund: Rekonstruierbarkeit von abgeleiteten Textformaten als Kriterium bei der urheberrechtlichen Einordnung
+* Fokus: Das Format "contextualized embeddings" (BERT)
+
+---
+### Grundidee
+<img data-src="img/invBERT1.png" height="260"></img>
+* Es liegt ein auf umfangreichen Daten trainiertes BERT-Modell vor <!-- .element: class="fragment" data-fragment-index="1" -->
+* Volltext wird als Menge kontextabhängiger Embeddings kodiert <!-- .element: class="fragment" data-fragment-index="2" -->
+* Frage: Kann der Volltext aus den Embeddings rekonstruiert werden?  <!-- .element: class="fragment" data-fragment-index="3" -->
+* Strategie: neuronales Netz lernt, die Transformation von Wörtern in Vektoren umzukehren <!-- .element: class="fragment" data-fragment-index="4" -->
+
+---
+### Die "attack scenarios" 
+* Erfolg ist abhängig vom jeweiligen "attack scenario" (= verfügbare Information)<br/><br/>
+  * **SC1: Embedding-only**: nur die Embeddings sind verfügbar
+  * **SC2: Black-Box**: API-Zugriff auf das Modell
+  * **SC3: White-Box**: Tokenizer, Vocabulary, Architektur, Parameter, Encoding Layer (nicht aber Gewichte) des Modells bekannt
+
+---
+### Ergebnisse
+
+<img data-src="img/invBERT2.png" height="200"></img> <!-- .element: class="fragment" data-fragment-index="3" -->
+
+* SC1: Rekonstruktion nicht denkbar <!-- .element: class="fragment" data-fragment-index="1" -->
+* SC2: Substantielle Hürden <!-- .element: class="fragment" data-fragment-index="2" -->
+* SC3 (White Box): Rekonstruktion möglich <!-- .element: class="fragment" data-fragment-index="3" -->
+  * Werte oben zeigen die Tests mit Harry-Potter-Zitaten
+  * Rekonstruktion klappt hier sehr gut (BLEU: >0.9)
+
+---
+### Beispiel
+<img data-src="img/invBERT3.jpg" height="300"></img>
+
+
+--
+## Evaluation von Textformaten bei Topic Modeling
+
+---
+### Kontext
+* Masterarbeit im Fach Digital Humanities (Trier)
+* Fragestellung: wie gut eignen sich abgeleitete Textformate für Topic Modeling?
+* Testkorpus: 126 englische Romane
+
+
+---
+### Evaluierte Formate
+* Einfache Term-Dokument-Matrix (TDM)
+* Segmentweise Aufhebung der Sequenzinformation (SAS)
+* Selektive Modifikation der Tokens (TKN)
+* (N-Gramme)
+
+
+---
+### Ergebnisse in aller Kürze
+<img data-src="img/kocula1.jpg" height="200"></img><img data-src="img/kocula2.jpg" height="200"></img><img data-src="img/kocula3.jpg" height="200"></img>
+
+Original vs. TDM &nbsp;&nbsp;–&nbsp;&nbsp; Original vs. SAS &nbsp;&nbsp;–&nbsp;&nbsp; Original cs. TKN
+
+<br/>
+
+* Kohärenz der Topics wurde mit Palmetto erhoben
+* Hier visualisiert: jeweils 20 Modelle pro Textformat
+
+
+
+
+--
+## Abgeleitete Textformate in Text+
+
+---
+### Beitrag zu "Collections"
+* TCDH trägt u.a. zum Bereich "Collections" bei
+* Umfang: Etwa 0.5 FTE über 5 Jahre
+* Kernaufgabe: Weiterentwicklung der abgeleiteten Textformate
+
+---
+### Aufgaben 
+* Im Einzelnen <!-- .element: class="fragment" data-fragment-index="1" -->
+  * Spezifikation mehrere Abgeleiteter Textformate (ATF)
+  * Spezifikation der Transformations-Routine
+  * Evaluation der ATF: Performance verschiedener Methoden mit verschiedenen ATF  
+  * Rechtliche Einschätzung (Werkgenuß, Wiedererkennbarkeit, Rekonstruierbarkeit)
+  * Beispielhaftes Angebot mehrerer Sammlungen als ATF
+  * Perspektive: Zertifizierung der Formate und Prozesse
+* Abstimmung mit der Community (SPP!) <!-- .element: class="fragment" data-fragment-index="2" -->
+  * Auswahl der Formate
+  * Auswahl der Textsammlungen
+  * Präferenzen zu den Modalitäten
+   
+
+--
+<img data-src="img/danke.png" height="550"></img> 
+
+
+
+
+
+</textarea>
+</section>
+</div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+// More info about initialization & config:
+// - https://revealjs.com/initialization/
+// - https://revealjs.com/config/
+Reveal.initialize({
+hash: true,
+center: false,
+controls: true,
+progress: true,
+
+// Learn about plugins: https://revealjs.com/plugins/
+plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+});
+</script>
+</body>
+</html>
